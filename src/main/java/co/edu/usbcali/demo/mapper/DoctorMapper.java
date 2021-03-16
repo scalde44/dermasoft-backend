@@ -22,10 +22,12 @@ public interface DoctorMapper {
 
 	@Mapping(source = "city.cityId", target = "cityI")
 	@Mapping(source = "rol.userIdentification", target = "userId")
+	@Mapping(source = "rol.state", target = "state")
 	public DoctorDTO toDoctorDTO(Doctor doctor);
 
 	@Mapping(source = "cityI", target = "city.cityId")
 	@Mapping(source = "userId", target = "rol.userIdentification")
+	@Mapping(source = "state", target = "rol.state")
 	public Doctor toDoctor(DoctorDTO doctorDTO);
 
 	public List<DoctorDTO> toDoctorDTOs(List<Doctor> doctors);

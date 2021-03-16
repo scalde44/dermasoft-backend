@@ -24,13 +24,15 @@ public class DoctorDTO implements Serializable {
 	private String verified;
 	private Integer cityI;
 	private String userId;
+	private String state;
 
 	public DoctorDTO() {
+		super();
 	}
 
 	public DoctorDTO(Date birthday, String description, Integer doctorId, String firstName, String gender, String image,
 			String lastName, String lastName2, String phone, Integer price, Integer reputation, String verified,
-			Integer cityI, String userId) {
+			Integer cityI, String userId, String state) {
 		super();
 		this.birthday = birthday;
 		this.description = description;
@@ -46,6 +48,7 @@ public class DoctorDTO implements Serializable {
 		this.verified = verified;
 		this.cityI = cityI;
 		this.userId = userId;
+		this.state = state;
 	}
 
 	public Date getBirthday() {
@@ -158,6 +161,14 @@ public class DoctorDTO implements Serializable {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 }
