@@ -23,11 +23,13 @@ public interface PatientMapper {
 	@Mapping(source = "city.cityId", target = "cityI")
 	@Mapping(source = "eps.epsId", target = "epsI")
 	@Mapping(source = "rol.userIdentification", target = "userId")
+	@Mapping(source = "rol.state", target = "state")
 	public PatientDTO toPatientDTO(Patient patient);
-	
+
 	@Mapping(source = "cityI", target = "city.cityId")
 	@Mapping(source = "epsI", target = "eps.epsId")
 	@Mapping(source = "userId", target = "rol.userIdentification")
+	@Mapping(source = "state", target = "rol.state")
 	public Patient toPatient(PatientDTO patientDTO);
 
 	public List<PatientDTO> toPatientDTOs(List<Patient> patients);

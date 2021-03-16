@@ -27,13 +27,15 @@ public class PatientDTO implements Serializable {
 	private Integer cityI;
 	private Integer epsI;
 	private String userId;
+	private String state;
 
 	public PatientDTO() {
+		super();
 	}
 
 	public PatientDTO(String approved, Date birthdate, String firstName, String gender, Integer height, String image,
 			String lastName, String lastName2, String maritalStatus, String ocupation, Integer patientId, String phone,
-			String verified, Integer weight, Integer cityI, Integer epsI, String userId) {
+			String verified, Integer weight, Integer cityI, Integer epsI, String userId, String state) {
 		super();
 		this.approved = approved;
 		this.birthdate = birthdate;
@@ -52,6 +54,7 @@ public class PatientDTO implements Serializable {
 		this.cityI = cityI;
 		this.epsI = epsI;
 		this.userId = userId;
+		this.state = state;
 	}
 
 	public String getApproved() {
@@ -188,6 +191,14 @@ public class PatientDTO implements Serializable {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 }
