@@ -79,4 +79,14 @@ public class PatientRestController {
 	public ResponseEntity<?> count() {
 		return ResponseEntity.ok().body(patientService.count());
 	}
+	
+	@GetMapping(value = "/buscarPorEmail/{email}")
+	public ResponseEntity<?> findByEmail(@PathVariable("email") String email) throws Exception {
+
+		Patient patient = (patientService.buscarPacientePorEmail(email).isPresent() == true)
+				? patientService.buscarPacientePorEmail(email).get()
+				: null;
+
+		return ResponseEntity.ok().body(patientMapper.toPatientDTO(patient));
+	}
 }
