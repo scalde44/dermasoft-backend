@@ -155,6 +155,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 			dto.setDescription(a.getDescription());
 			dto.setFirstName(a.getPatient().getFirstName());
 			dto.setLastName(a.getPatient().getLastName());
+			dto.setImage(a.getPatient().getImage());
 			dto.setPrice(a.getDoctor().getPrice());
 			appointmentDTOs.add(dto);
 		}

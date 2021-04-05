@@ -13,6 +13,7 @@ public class PatientAppointmentDTO implements Serializable {
 	private Date date;
 	private String firstName;
 	private String lastName;
+	private String image;
 	@NotNull
 	@NotEmpty
 	@Size(max = 255)
@@ -23,12 +24,13 @@ public class PatientAppointmentDTO implements Serializable {
 		super();
 	}
 
-	public PatientAppointmentDTO(@NotNull Date date, String firstName, String lastName,
+	public PatientAppointmentDTO(@NotNull Date date, String firstName, String lastName, String image,
 			@NotNull @NotEmpty @Size(max = 255) String description, Integer price) {
 		super();
 		this.date = date;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.image = image;
 		this.description = description;
 		this.price = price;
 	}
@@ -57,6 +59,14 @@ public class PatientAppointmentDTO implements Serializable {
 		this.lastName = lastName;
 	}
 
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -72,4 +82,5 @@ public class PatientAppointmentDTO implements Serializable {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
+
 }
