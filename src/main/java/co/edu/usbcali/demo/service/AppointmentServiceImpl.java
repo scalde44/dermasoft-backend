@@ -1,5 +1,6 @@
 package co.edu.usbcali.demo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -15,7 +16,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.usbcali.demo.domain.Appointment;
+import co.edu.usbcali.demo.domain.Doctor;
 import co.edu.usbcali.demo.domain.Treatment;
+import co.edu.usbcali.demo.dto.PatientAppointmentDTO;
 import co.edu.usbcali.demo.exception.ZMessManager;
 import co.edu.usbcali.demo.repository.AppointmentRepository;
 import co.edu.usbcali.demo.utility.Utilities;
@@ -33,6 +36,8 @@ public class AppointmentServiceImpl implements AppointmentService {
 	@Autowired
 	private AppointmentRepository appointmentRepository;
 
+	@Autowired
+	private DoctorService doctorService;
 	@Autowired
 	private Validator validator;
 
@@ -132,6 +137,29 @@ public class AppointmentServiceImpl implements AppointmentService {
 	@Transactional(readOnly = true)
 	public Optional<Appointment> findById(Integer appointmentId) {
 		return appointmentRepository.findById(appointmentId);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<PatientAppointmentDTO> buscarPacientesPorDoctor(Integer doctorId) {
+		Optional<Doctor> optional = doctorService.findById(doctorId);
+		if (optional.isPresent() == false) {
+			throw new ZMessManager("Doctor no existe");
+
+		}
+		List<Appointment> appointments = appointmentRepository.findByDoctor(optional.get());
+		List<PatientAppointmentDTO> appointmentDTOs = new ArrayList<>();
+		for (Appointment a : appointments) {
+			PatientAppointmentDTO dto = new PatientAppointmentDTO();
+			dto.setDate(a.getDate());
+			dto.setDescription(a.getDescription());
+			dto.setFirstName(a.getPatient().getFirstName());
+			dto.setLastName(a.getPatient().getLastName());
+			dto.setPrice(a.getDoctor().getPrice());
+			appointmentDTOs.add(dto);
+		}
+
+		return appointmentDTOs;
 	}
 
 }

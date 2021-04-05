@@ -78,4 +78,15 @@ public class DoctorRestController {
 	public ResponseEntity<?> count() {
 		return ResponseEntity.ok().body(doctorService.count());
 	}
+
+	@GetMapping(value = "/findByEmail/{email}")
+	public ResponseEntity<?> findByEmail(@PathVariable("email") String email) throws Exception {
+
+		Doctor doctor = (doctorService.buscarDoctorPorEmail(email).isPresent() == true)
+				? doctorService.buscarDoctorPorEmail(email).get()
+				: null;
+
+		return ResponseEntity.ok().body(doctorMapper.toDoctorDTO(doctor));
+	}
+
 }

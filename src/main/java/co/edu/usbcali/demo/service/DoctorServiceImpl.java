@@ -133,4 +133,10 @@ public class DoctorServiceImpl implements DoctorService {
 		return doctorRepository.findById(doctorId);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Optional<Doctor> buscarDoctorPorEmail(String email) {
+		return doctorRepository.buscarDoctorPorEmail(email);
+	}
+
 }
