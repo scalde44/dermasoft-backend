@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.usbcali.demo.domain.Appointment;
 import co.edu.usbcali.demo.domain.Doctor;
+import co.edu.usbcali.demo.domain.Patient;
 import co.edu.usbcali.demo.domain.Treatment;
 import co.edu.usbcali.demo.dto.PatientAppointmentDTO;
 import co.edu.usbcali.demo.exception.ZMessManager;
@@ -38,6 +39,8 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 	@Autowired
 	private DoctorService doctorService;
+	@Autowired
+	private PatientService patientService;
 	@Autowired
 	private Validator validator;
 
@@ -160,6 +163,25 @@ public class AppointmentServiceImpl implements AppointmentService {
 			appointmentDTOs.add(dto);
 		}
 
+		return appointmentDTOs;
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<PatientAppointmentDTO> buscarCitasPorPaciente(Integer patientId) {
+		Optional<Patient> optional = patientService.findById(patientId);
+		if (optional.isPresent() == false) {
+			throw new ZMessManager("Paciente no existe");
+
+		}
+		List<Appointment> appointments = appointmentRepository.findByPatient(optional.get());
+		List<PatientAppointmentDTO> appointmentDTOs = new ArrayList<>();
+		for (Appointment a : appointments) {
+			PatientAppointmentDTO dto = new PatientAppointmentDTO();
+			dto.setDate(a.getDate());
+			dto.setDescription(a.getDescription());
+			appointmentDTOs.add(dto);
+		}
 		return appointmentDTOs;
 	}
 

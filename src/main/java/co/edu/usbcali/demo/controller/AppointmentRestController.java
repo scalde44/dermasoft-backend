@@ -86,4 +86,11 @@ public class AppointmentRestController {
 
 		return ResponseEntity.ok().body(appointmentService.buscarPacientesPorDoctor(doctorId));
 	}
+
+	// Buscar citas por paciente
+	@GetMapping("/findByPatient/{patientId}")
+	public ResponseEntity<?> findByPatient(@PathVariable("patientId") Integer patientId) throws Exception {
+
+		return ResponseEntity.ok().body(appointmentService.buscarCitasPorPaciente(patientId));
+	}
 }

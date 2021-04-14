@@ -1,11 +1,9 @@
 package co.edu.usbcali.demo.service;
 
+import java.util.List;
+
 import co.edu.usbcali.demo.domain.Appointment;
 import co.edu.usbcali.demo.dto.PatientAppointmentDTO;
-
-import java.math.*;
-
-import java.util.*;
 
 /**
  * @author Zathura Code Generator Version 9.0 http://zathuracode.org
@@ -15,4 +13,7 @@ import java.util.*;
 public interface AppointmentService extends GenericService<Appointment, Integer> {
 	// Buscar pacientes por doctores
 	public List<PatientAppointmentDTO> buscarPacientesPorDoctor(Integer doctorId);
+
+	// Buscar citas por pacientes
+	public List<PatientAppointmentDTO> buscarCitasPorPaciente(Integer patientId);
 }
