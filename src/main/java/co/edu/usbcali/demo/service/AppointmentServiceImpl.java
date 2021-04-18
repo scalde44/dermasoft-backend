@@ -76,6 +76,17 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 		validate(entity);
 
+		Optional<Appointment> optionalDoctor = appointmentRepository.findByDateAndDoctor(entity.getDate(),
+				entity.getDoctor());
+		if (optionalDoctor.isPresent()) {
+			throw new ZMessManager("El doctor ya tiene una cita a esta hora");
+		}
+
+		Optional<Appointment> optionalPatient = appointmentRepository.findByDateAndPatient(entity.getDate(),
+				entity.getPatient());
+		if(optionalPatient.isPresent()) {
+			throw new ZMessManager("Ya tienes una cita a esta hora");
+		}
 		return appointmentRepository.save(entity);
 
 	}
