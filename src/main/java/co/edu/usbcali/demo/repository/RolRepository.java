@@ -14,4 +14,7 @@ import co.edu.usbcali.demo.domain.Rol;
 public interface RolRepository extends JpaRepository<Rol, String> {
 	// Traer user con email
 	public Optional<Rol> findByEmail(String email);
+
+	// Traer user por email y rol
+	public Optional<Rol> findByEmailAndRole(String email, Integer role);
 }

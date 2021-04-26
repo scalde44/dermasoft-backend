@@ -15,8 +15,10 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.usbcali.demo.domain.Admin;
+import co.edu.usbcali.demo.domain.Rol;
 import co.edu.usbcali.demo.exception.ZMessManager;
 import co.edu.usbcali.demo.repository.AdminRepository;
+import co.edu.usbcali.demo.repository.RolRepository;
 
 /**
  * @author Zathura Code Generator Version 9.0 http://zathuracode.org
@@ -28,6 +30,8 @@ import co.edu.usbcali.demo.repository.AdminRepository;
 public class AdminServiceImpl implements AdminService {
 	@Autowired
 	private AdminRepository adminRepository;
+	@Autowired
+	private RolRepository rolRepository;
 	@Autowired
 	private Validator validator;
 
@@ -123,8 +127,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public Optional<Admin> buscarAdminPorEmail(String email) {
-		// TODO Auto-generated method stub
-		return adminRepository.buscarAdminPorEmail(email);
+	public Optional<Rol> buscarAdminPorEmail(String email) {
+		return rolRepository.findByEmailAndRole(email, 1);
 	}
 }
