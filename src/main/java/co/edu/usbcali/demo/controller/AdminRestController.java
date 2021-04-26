@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.usbcali.demo.domain.Admin;
+import co.edu.usbcali.demo.domain.Doctor;
 import co.edu.usbcali.demo.dto.AdminDTO;
 import co.edu.usbcali.demo.mapper.AdminMapper;
 import co.edu.usbcali.demo.service.AdminService;
@@ -77,5 +78,14 @@ public class AdminRestController {
 	@GetMapping(value = "/count")
 	public ResponseEntity<?> count() {
 		return ResponseEntity.ok().body(adminService.count());
+	}
+	@GetMapping(value = "/findByEmail/{email}")
+	public ResponseEntity<?> findByEmail(@PathVariable("email") String email) throws Exception {
+
+		Admin admin = (adminService.buscarAdminPorEmail(email).isPresent() == true)
+				? adminService.buscarAdminPorEmail(email).get()
+				: null;
+
+		return ResponseEntity.ok().body(adminMapper.toAdminDTO(admin));
 	}
 }

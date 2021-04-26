@@ -121,4 +121,10 @@ public class AdminServiceImpl implements AdminService {
 
 		return adminRepository.findById(adminId);
 	}
+
+	@Override
+	public Optional<Admin> buscarAdminPorEmail(String email) {
+		// TODO Auto-generated method stub
+		return adminRepository.buscarAdminPorEmail(email);
+	}
 }
