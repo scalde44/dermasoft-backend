@@ -84,7 +84,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 		Optional<Appointment> optionalPatient = appointmentRepository.findByDateAndPatient(entity.getDate(),
 				entity.getPatient());
-		if(optionalPatient.isPresent()) {
+		if (optionalPatient.isPresent()) {
 			throw new ZMessManager("Ya tienes una cita a esta hora");
 		}
 		return appointmentRepository.save(entity);
@@ -171,6 +171,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 			dto.setLastName(a.getPatient().getLastName());
 			dto.setImage(a.getPatient().getImage());
 			dto.setPrice(a.getDoctor().getPrice());
+			dto.setAppointmentId(a.getAppointmentId());
 			appointmentDTOs.add(dto);
 		}
 
@@ -194,6 +195,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 			dto.setFirstName(a.getDoctor().getFirstName());
 			dto.setLastName(a.getDoctor().getLastName());
 			dto.setPrice(a.getDoctor().getPrice());
+			dto.setAppointmentId(a.getAppointmentId());
 			appointmentDTOs.add(dto);
 		}
 		return appointmentDTOs;
