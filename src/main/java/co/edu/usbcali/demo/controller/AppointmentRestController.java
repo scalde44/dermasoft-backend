@@ -93,4 +93,11 @@ public class AppointmentRestController {
 
 		return ResponseEntity.ok().body(appointmentService.buscarCitasPorPaciente(patientId));
 	}
+	
+	// Crear FinalizarCitaDTO por id appointment
+	@GetMapping("/finalizarCita/{appointmentId}")
+	public ResponseEntity<?> finalizarCita(@PathVariable("appointmentId") Integer appointmentId) throws Exception {
+
+		return ResponseEntity.ok().body(appointmentService.crearFinalizarCitaDTOById(appointmentId));
+	}
 }

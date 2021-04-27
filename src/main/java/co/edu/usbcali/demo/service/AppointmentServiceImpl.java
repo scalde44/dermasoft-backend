@@ -19,6 +19,7 @@ import co.edu.usbcali.demo.domain.Appointment;
 import co.edu.usbcali.demo.domain.Doctor;
 import co.edu.usbcali.demo.domain.Patient;
 import co.edu.usbcali.demo.domain.Treatment;
+import co.edu.usbcali.demo.dto.FinalizarCitaDTO;
 import co.edu.usbcali.demo.dto.PatientAppointmentDTO;
 import co.edu.usbcali.demo.exception.ZMessManager;
 import co.edu.usbcali.demo.repository.AppointmentRepository;
@@ -199,6 +200,24 @@ public class AppointmentServiceImpl implements AppointmentService {
 			appointmentDTOs.add(dto);
 		}
 		return appointmentDTOs;
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public FinalizarCitaDTO crearFinalizarCitaDTOById(Integer appointmentId) {
+		Optional<Appointment> optional = appointmentRepository.findById(appointmentId);
+		if (optional.isPresent() == false) {
+			throw new ZMessManager("Cita no existe");
+		}
+		Appointment appointment = optional.get();
+		FinalizarCitaDTO finalizarCitaDTO = new FinalizarCitaDTO();
+		finalizarCitaDTO.setDate(appointment.getDate());
+		finalizarCitaDTO.setDescription(appointment.getDescription());
+		finalizarCitaDTO.setEps(appointment.getPatient().getEps().getEpsName());
+		finalizarCitaDTO.setFirstNamePatient(appointment.getPatient().getFirstName());
+		finalizarCitaDTO.setGender(appointment.getPatient().getGender());
+		finalizarCitaDTO.setLastNamePatient(appointment.getPatient().getLastName());
+		return finalizarCitaDTO;
 	}
 
 }

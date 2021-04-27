@@ -3,6 +3,7 @@ package co.edu.usbcali.demo.service;
 import java.util.List;
 
 import co.edu.usbcali.demo.domain.Appointment;
+import co.edu.usbcali.demo.dto.FinalizarCitaDTO;
 import co.edu.usbcali.demo.dto.PatientAppointmentDTO;
 
 /**
@@ -16,4 +17,7 @@ public interface AppointmentService extends GenericService<Appointment, Integer>
 
 	// Buscar citas por pacientes
 	public List<PatientAppointmentDTO> buscarCitasPorPaciente(Integer patientId);
+
+	// Crear dto finalizar cita
+	public FinalizarCitaDTO crearFinalizarCitaDTOById(Integer appointmentId);
 }
