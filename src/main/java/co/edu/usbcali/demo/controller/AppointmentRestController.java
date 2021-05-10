@@ -100,4 +100,12 @@ public class AppointmentRestController {
 
 		return ResponseEntity.ok().body(appointmentService.crearFinalizarCitaDTOById(appointmentId));
 	}
+	
+	// Cerrar cita
+	@GetMapping("/cerrarCita/{appointmentId}")
+	public ResponseEntity<?> cerrarCita(@PathVariable("appointmentId") Integer appointmentId) throws Exception {
+
+		return ResponseEntity.ok()
+				.body(appointmentMapper.toAppointmentDTO(appointmentService.cerrarCita(appointmentId)));
+	}
 }

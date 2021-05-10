@@ -20,4 +20,7 @@ public interface AppointmentService extends GenericService<Appointment, Integer>
 
 	// Crear dto finalizar cita
 	public FinalizarCitaDTO crearFinalizarCitaDTOById(Integer appointmentId);
+
+	// Cerrar cita
+	public Appointment cerrarCita(Integer appointmentId) throws Exception;
 }

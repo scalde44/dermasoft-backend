@@ -1,6 +1,7 @@
 package co.edu.usbcali.demo.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import co.edu.usbcali.demo.domain.Appointment;
 import co.edu.usbcali.demo.domain.Doctor;
 import co.edu.usbcali.demo.domain.Patient;
+import co.edu.usbcali.demo.domain.SendMail;
 import co.edu.usbcali.demo.domain.Treatment;
 import co.edu.usbcali.demo.dto.FinalizarCitaDTO;
 import co.edu.usbcali.demo.dto.PatientAppointmentDTO;
@@ -44,6 +46,8 @@ public class AppointmentServiceImpl implements AppointmentService {
 	private PatientService patientService;
 	@Autowired
 	private Validator validator;
+	@Autowired
+	private SendMailService sendMailService;
 
 	@Override
 	public void validate(Appointment appointment) throws ConstraintViolationException {
@@ -88,7 +92,30 @@ public class AppointmentServiceImpl implements AppointmentService {
 		if (optionalPatient.isPresent()) {
 			throw new ZMessManager("Ya tienes una cita a esta hora");
 		}
-		return appointmentRepository.save(entity);
+
+		Appointment appointment = appointmentRepository.save(entity);
+
+		SendMail sendMail = new SendMail();
+		//
+		String paciente = appointment.getPatient().getFirstName() + " " + appointment.getPatient().getLastName();
+		String doctor = appointment.getDoctor().getFirstName() + " " + appointment.getDoctor().getLastName();
+		Date fecha = appointment.getDate();
+		String motivo = appointment.getReason();
+		String descripcion = appointment.getDescription();
+		// Correo al doctor
+		sendMail.setSubject("Nueva cita médica");
+		sendMail.setText("Han reservado una nueva cita médica con usted, a continuacion los datos de la cita:\n"
+				+ "Paciente: " + paciente + "\nMotivo de consulta: " + motivo + "\nDescripcion: " + descripcion
+				+ "\nFecha: " + fecha);
+		sendMail.setTo(appointment.getDoctor().getRol().getEmail());
+		sendMailService.enviarEmail(sendMail);
+		// Correo al paciente
+		sendMail.setSubject("Nueva cita médica");
+		sendMail.setText("Usted ha reservado una nueva cita médica, a continuacion los datos de la cita:\n" + "Doctor: "
+				+ doctor + "\nMotivo de consulta: " + motivo + "\nDescripcion: " + descripcion + "\nFecha: " + fecha);
+		sendMail.setTo(appointment.getPatient().getRol().getEmail());
+		sendMailService.enviarEmail(sendMail);
+		return appointment;
 
 	}
 
@@ -218,6 +245,20 @@ public class AppointmentServiceImpl implements AppointmentService {
 		finalizarCitaDTO.setGender(appointment.getPatient().getGender());
 		finalizarCitaDTO.setLastNamePatient(appointment.getPatient().getLastName());
 		return finalizarCitaDTO;
+	}
+
+	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public Appointment cerrarCita(Integer appointmentId) throws Exception {
+		Appointment appointment = null;
+		Optional<Appointment> optionalApp = appointmentRepository.findById(appointmentId);
+		if (optionalApp.isPresent() == false) {
+			throw new ZMessManager("Cita no existe");
+		}
+		appointment = optionalApp.get();
+		appointment.setState("I");
+		appointment = appointmentRepository.save(appointment);
+		return appointment;
 	}
 
 }

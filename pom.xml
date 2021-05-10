@@ -98,6 +98,18 @@
 			<version>${io.jsonwebtoken.version}</version>
 			<scope>runtime</scope>
 		</dependency>
+		
+		<!-- Mail -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<!-- JasperReports -->
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.16.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
