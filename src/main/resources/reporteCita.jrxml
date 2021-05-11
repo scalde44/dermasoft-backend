@@ -124,7 +124,7 @@ WHERE ap.appointment_id=$P{idCita}]]>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Sitka Text" size="12"/>
+					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<text><![CDATA[DERMASOFT]]></text>
 			</staticText>
