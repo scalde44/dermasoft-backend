@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
@@ -42,8 +43,9 @@ public class JasperReportServiceImpl implements JasperReportService {
 		try {
 			conn = dataSource.getConnection();
 			// Cargar archivo y compilar
-			File file = ResourceUtils.getFile("classpath:prueba.jrxml");
-			JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+			ClassPathResource resource = new ClassPathResource("/prueba.jrxml");
+			//File file = ResourceUtils.getFile("classpath:prueba.jrxml");
+			JasperReport jasperReport = JasperCompileManager.compileReport(resource.getInputStream());
 			Map<String, Object> parameters = new HashMap<>();
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, conn);
 			byte[] pdf = JasperExportManager.exportReportToPdf(jasperPrint);
