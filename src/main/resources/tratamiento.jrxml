@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="tratamiento" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="be2301a9-efd2-4b5e-b6bc-760999744f87">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="dermasoft"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="idCita" class="java.lang.Long"/>
+	<queryString language="SQL">
+		<![CDATA[select pr.name as nombre_producto, tr.quantity as cantidad,tr.duration as duracion_tratamiento,
+tr.description as desc_tratamiento
+from treatment tr
+INNER JOIN product pr ON tr.product_id = pr.product_id
+WHERE tr.appointment_id=$P{idCita}]]>
+	</queryString>
+	<field name="nombre_producto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre_producto"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre_producto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="product"/>
+	</field>
+	<field name="cantidad" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="cantidad"/>
+		<property name="com.jaspersoft.studio.field.label" value="cantidad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="treatment"/>
+	</field>
+	<field name="duracion_tratamiento" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="duracion_tratamiento"/>
+		<property name="com.jaspersoft.studio.field.label" value="duracion_tratamiento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="treatment"/>
+	</field>
+	<field name="desc_tratamiento" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="desc_tratamiento"/>
+		<property name="com.jaspersoft.studio.field.label" value="desc_tratamiento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="treatment"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="30">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="180" height="30" backcolor="#E3E3E3" uuid="c59121ab-7964-4d2f-b92e-d4d97ff0a1e1"/>
+				<box>
+					<pen lineColor="#DEDCDC"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Nombre del producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="180" y="0" width="100" height="30" backcolor="#E3E3E3" uuid="7c877669-8329-4ac9-a841-b9dc180a4d4e"/>
+				<box>
+					<pen lineColor="#DEDCDC"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="280" y="0" width="120" height="30" backcolor="#E3E3E3" uuid="6f16e058-5d54-4e0c-af7a-2fce4cb7f6be"/>
+				<box>
+					<pen lineColor="#DEDCDC"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Duración del tratamiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="400" y="0" width="155" height="30" backcolor="#E3E3E3" uuid="8b2d298b-fff2-4adc-83c8-8b382eb19c76">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineColor="#DEDCDC"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="180" height="30" uuid="e81af3d1-4703-4617-8d6d-234e20b0c2eb"/>
+				<box>
+					<pen lineColor="#DEDCDC"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombre_producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="100" height="30" uuid="cbf0f77c-cf8e-49c0-b356-d61f52745639"/>
+				<box>
+					<pen lineColor="#DEDCDC"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="120" height="30" uuid="c180b276-6188-4204-8e53-67db1f72591c"/>
+				<box>
+					<pen lineColor="#DEDCDC"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{duracion_tratamiento}+" semanas"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="155" height="30" uuid="8f61e0fd-75f5-4433-877b-337659bb903c"/>
+				<box>
+					<pen lineColor="#DEDCDC"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{desc_tratamiento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,9 +33,10 @@ public class JasperReportRestController {
 	@Autowired
 	private JasperReportService jasperReportService;
 
-	@GetMapping("/generarPdf")
-	public ResponseEntity<InputStreamResource> generarReporteNatural() throws Exception {
-		ByteArrayInputStream bais = jasperReportService.generarPdf();
+	@GetMapping("/generarReporteCita/{appointmentId}")
+	public ResponseEntity<InputStreamResource> generarReporteCita(@PathVariable("appointmentId") Long appointmentId)
+			throws Exception {
+		ByteArrayInputStream bais = jasperReportService.generarReporteCita(appointmentId);
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Disposition", "inline; filename=reporteCita.pdf");
 		return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)

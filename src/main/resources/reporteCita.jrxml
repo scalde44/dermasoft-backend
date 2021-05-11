@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="36b99719-6afc-4cdd-ba68-72b6382f2f1a">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="dermasoft"/>
+	<parameter name="idCita" class="java.lang.Long"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT ap.appointment_id,ap.date as fecha_cita, d.first_name as nombre_doctor,
+d.last_name as apellido_doctor, d.phone as telefono_doctor, d.birthday as fecha_doctor,
+d.reputation as reputacion_doctor, d.price as precio_doctor,d.description as desc_doctor,
+d.user_identification as identificacion_doctor, pa.first_name as nombre_paciente,
+pa.last_name as apellido_paciente, pa.phone as telefono_paciente, pa.birthdate as fecha_paciente,
+pa.user_identification as identificacion_paciente, ep.eps_name as nombre_eps
+FROM appointment ap INNER JOIN doctor d 
+ON ap.doctor_id = d.doctor_id INNER JOIN patient pa
+ON ap.patient_id = pa.patient_id INNER JOIN eps ep
+ON pa.eps_id = ep.eps_id
+WHERE ap.appointment_id=$P{idCita}]]>
+	</queryString>
+	<field name="appointment_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="appointment_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="appointment_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="appointment"/>
+	</field>
+	<field name="fecha_cita" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_cita"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_cita"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="appointment"/>
+	</field>
+	<field name="nombre_doctor" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre_doctor"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre_doctor"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="doctor"/>
+	</field>
+	<field name="apellido_doctor" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="apellido_doctor"/>
+		<property name="com.jaspersoft.studio.field.label" value="apellido_doctor"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="doctor"/>
+	</field>
+	<field name="telefono_doctor" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="telefono_doctor"/>
+		<property name="com.jaspersoft.studio.field.label" value="telefono_doctor"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="doctor"/>
+	</field>
+	<field name="fecha_doctor" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_doctor"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_doctor"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="doctor"/>
+	</field>
+	<field name="reputacion_doctor" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="reputacion_doctor"/>
+		<property name="com.jaspersoft.studio.field.label" value="reputacion_doctor"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="doctor"/>
+	</field>
+	<field name="precio_doctor" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="precio_doctor"/>
+		<property name="com.jaspersoft.studio.field.label" value="precio_doctor"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="doctor"/>
+	</field>
+	<field name="desc_doctor" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="desc_doctor"/>
+		<property name="com.jaspersoft.studio.field.label" value="desc_doctor"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="doctor"/>
+	</field>
+	<field name="identificacion_doctor" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="identificacion_doctor"/>
+		<property name="com.jaspersoft.studio.field.label" value="identificacion_doctor"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="doctor"/>
+	</field>
+	<field name="nombre_paciente" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre_paciente"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre_paciente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="patient"/>
+	</field>
+	<field name="apellido_paciente" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="apellido_paciente"/>
+		<property name="com.jaspersoft.studio.field.label" value="apellido_paciente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="patient"/>
+	</field>
+	<field name="telefono_paciente" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="telefono_paciente"/>
+		<property name="com.jaspersoft.studio.field.label" value="telefono_paciente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="patient"/>
+	</field>
+	<field name="fecha_paciente" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_paciente"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_paciente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="patient"/>
+	</field>
+	<field name="identificacion_paciente" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="identificacion_paciente"/>
+		<property name="com.jaspersoft.studio.field.label" value="identificacion_paciente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="patient"/>
+	</field>
+	<field name="nombre_eps" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre_eps"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre_eps"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="eps"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="150" splitType="Stretch">
+			<staticText>
+				<reportElement x="140" y="0" width="415" height="50" uuid="a96e4a34-51ec-4b3d-b890-6775065e0a23">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineColor="#DEDCDC"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFORME DE LA CITA MÉDICA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="50" y="0" width="90" height="50" forecolor="#292828" backcolor="#8BE6F8" uuid="a70c6e0f-298d-40b8-95ec-47bd11164d50">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Sitka Text" size="12"/>
+				</textElement>
+				<text><![CDATA[DERMASOFT]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="50" height="50" uuid="7c2ecc9b-bda8-45a3-937d-faaa98df17c5">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA["https://image.freepik.com/vector-gratis/cita-medica-linea-problemas-medicos_23-2148518021.jpg"]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="0" y="60" width="555" height="90" uuid="269e3169-1d2f-40c8-ad55-fcfe397cba27">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="60" width="127" height="30" uuid="f4b3fc3c-979d-46a8-9f76-5dcf228fb2f0">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[Nombre del paciente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="90" width="127" height="30" uuid="63c4db50-2036-4456-85e5-94f0c660051c">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[Número de documento:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="90" width="127" height="30" uuid="0d1d7958-a1ea-4e08-883c-a9a5d05fbcd5">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[EPS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="60" width="127" height="30" uuid="2f95036c-b281-40ef-afff-b411e025968a">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[Fecha de nacimiento:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="120" width="127" height="30" uuid="222bfa37-b632-4085-9509-a5bc4b807624">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[Teléfono:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="120" width="127" height="30" uuid="adceac51-e5bf-4552-b119-8ea473dfe2c4">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[Fecha de la cita:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="127" y="60" width="173" height="30" uuid="8008c71d-12c6-4675-a491-550ea5483b80"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombre_paciente}+" "+$F{apellido_paciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="90" width="173" height="30" uuid="7c209b24-6d25-42a5-900f-0b4bfa09fdf8"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{identificacion_paciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="120" width="173" height="30" uuid="c0c4b005-9dfe-42b7-9b90-815326b5fa31"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{telefono_paciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="427" y="60" width="127" height="30" uuid="9d6cd012-7d0d-4d6c-8408-df6a62c99f35"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{fecha_paciente})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="427" y="90" width="127" height="30" uuid="d727a9c8-7db9-470f-af92-06d1b9a1cee7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombre_eps}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="427" y="120" width="127" height="30" uuid="507d6127-48f1-4853-8187-54d0d3832f18"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fecha_cita}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="101" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="5" width="555" height="90" uuid="4084f92c-6230-4b4f-91ff-6541bb7e6493">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="5" width="127" height="30" uuid="5a47983d-3bd5-4775-8653-e4fe98a17510">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[Nombre del doctor:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="35" width="127" height="30" uuid="fe2f2c9c-68ac-4e08-b7f6-fd26daa911d7">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[Número de documento:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="65" width="127" height="30" uuid="4392a4be-42c6-45fe-9287-a69bfa4f2783">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[Teléfono:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="5" width="127" height="30" uuid="df32bfad-fed2-4919-840d-e19493d09e89">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[Fecha de nacimiento:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="65" width="127" height="30" uuid="387a6631-3879-4658-83ad-1bcb00c75adf">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[Precio de la consulta:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="35" width="127" height="30" uuid="75677fd5-db1a-4882-aa5c-2cb1f7e06008">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[Reputación:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="127" y="5" width="173" height="30" uuid="4e297433-369e-4fc9-bdd0-767fb12e547e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombre_doctor}+" "+$F{apellido_doctor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="35" width="173" height="30" uuid="5efdc2f9-b3f1-4251-aef1-9df809d02893"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{identificacion_doctor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="65" width="173" height="30" uuid="c1882fde-691d-48bf-a786-770294782258"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{telefono_doctor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="427" y="5" width="127" height="30" uuid="1fcc6637-3a51-4fd5-8f2d-f0a900414164"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{fecha_doctor})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="427" y="35" width="127" height="30" uuid="478eb37b-1518-4e02-964f-9a7e962e5bc3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{reputacion_doctor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="427" y="65" width="127" height="30" uuid="9aa600d6-9cda-4aa7-a9ff-ecaaeaa1055d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{precio_doctor}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="50">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="30" backcolor="#E3E3E3" uuid="2bb3a12b-a229-4fe7-847c-1310b4306588">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineColor="#DEDCDC"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#DEDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Tratamiento]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="30" width="20" height="20" uuid="f979c919-a2d0-4a0d-a906-5ab13786ce61">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<subreportParameter name="idCita">
+					<subreportParameterExpression><![CDATA[$P{idCita}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["tratamiento.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="414" y="0" width="70" height="45" uuid="a5ed97c1-ca69-49cd-80cd-6de3af934b86">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["PÁGINA " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="484" y="0" width="70" height="45" uuid="8fe94ff4-10fd-4ffa-95e9-7c5a4a43e233">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" DE " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

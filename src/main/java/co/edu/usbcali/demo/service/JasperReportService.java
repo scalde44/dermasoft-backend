@@ -13,8 +13,6 @@ import java.io.ByteArrayInputStream;
  */
 public interface JasperReportService {
 
-	public ByteArrayInputStream generarPdf() throws Exception;
-
-	
+	public ByteArrayInputStream generarReporteCita(Long idCita) throws Exception;
 
 }
