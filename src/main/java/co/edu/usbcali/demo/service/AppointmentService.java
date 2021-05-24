@@ -3,6 +3,7 @@ package co.edu.usbcali.demo.service;
 import java.util.List;
 
 import co.edu.usbcali.demo.domain.Appointment;
+import co.edu.usbcali.demo.dto.CantidadCitasAnoDTO;
 import co.edu.usbcali.demo.dto.FinalizarCitaDTO;
 import co.edu.usbcali.demo.dto.PatientAppointmentDTO;
 
@@ -23,4 +24,7 @@ public interface AppointmentService extends GenericService<Appointment, Integer>
 
 	// Cerrar cita
 	public Appointment cerrarCita(Integer appointmentId) throws Exception;
+
+	// Reporte citas por doctor
+	public List<CantidadCitasAnoDTO> findCitasDoctorAnuales(Integer doctorId);
 }

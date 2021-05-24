@@ -21,6 +21,7 @@ import co.edu.usbcali.demo.domain.Doctor;
 import co.edu.usbcali.demo.domain.Patient;
 import co.edu.usbcali.demo.domain.SendMail;
 import co.edu.usbcali.demo.domain.Treatment;
+import co.edu.usbcali.demo.dto.CantidadCitasAnoDTO;
 import co.edu.usbcali.demo.dto.FinalizarCitaDTO;
 import co.edu.usbcali.demo.dto.PatientAppointmentDTO;
 import co.edu.usbcali.demo.exception.ZMessManager;
@@ -259,6 +260,12 @@ public class AppointmentServiceImpl implements AppointmentService {
 		appointment.setState("I");
 		appointment = appointmentRepository.save(appointment);
 		return appointment;
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<CantidadCitasAnoDTO> findCitasDoctorAnuales(Integer doctorId) {
+		return appointmentRepository.findCitasDoctorAnuales(doctorId);
 	}
 
 }

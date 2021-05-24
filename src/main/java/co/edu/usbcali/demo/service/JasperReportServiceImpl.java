@@ -34,7 +34,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 	@Autowired
 	private DataSource dataSource;
 
-	// PDF Persona natural
+	// PDF
 	@Override
 	public ByteArrayInputStream generarReporteCita(Long idCita) throws Exception {
 		Connection conn = null;
