@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.edu.usbcali.demo.domain.Appointment;
 import co.edu.usbcali.demo.dto.AppointmentDTO;
 import co.edu.usbcali.demo.mapper.AppointmentMapper;
+import co.edu.usbcali.demo.mapper.PatientMapper;
 import co.edu.usbcali.demo.service.AppointmentService;
 
 /**
@@ -32,6 +33,8 @@ public class AppointmentRestController {
 	private AppointmentService appointmentService;
 	@Autowired
 	private AppointmentMapper appointmentMapper;
+	@Autowired
+	private PatientMapper patientMapper;
 
 	@GetMapping(value = "/{appointmentId}")
 	public ResponseEntity<?> findById(@PathVariable("appointmentId") Integer appointmentId) throws Exception {
@@ -84,7 +87,15 @@ public class AppointmentRestController {
 	@GetMapping("/findByDoctor/{doctorId}")
 	public ResponseEntity<?> findByDoctor(@PathVariable("doctorId") Integer doctorId) throws Exception {
 
-		return ResponseEntity.ok().body(appointmentService.buscarPacientesPorDoctor(doctorId));
+		return ResponseEntity.ok().body(appointmentService.buscarCitasPorDoctor(doctorId));
+	}
+
+	// Buscar pacientes por doctor
+	@GetMapping("/findPatientsByDoctor/{doctorId}")
+	public ResponseEntity<?> findPatientsByDoctor(@PathVariable("doctorId") Integer doctorId) throws Exception {
+
+		return ResponseEntity.ok()
+				.body(patientMapper.toPatientDTOs(appointmentService.buscarPacientesPorDoctor(doctorId)));
 	}
 
 	// Buscar citas por paciente

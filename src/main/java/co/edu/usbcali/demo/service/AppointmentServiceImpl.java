@@ -184,7 +184,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<PatientAppointmentDTO> buscarPacientesPorDoctor(Integer doctorId) {
+	public List<PatientAppointmentDTO> buscarCitasPorDoctor(Integer doctorId) {
 		Optional<Doctor> optional = doctorService.findById(doctorId);
 		if (optional.isPresent() == false) {
 			throw new ZMessManager("Doctor no existe");
@@ -201,6 +201,8 @@ public class AppointmentServiceImpl implements AppointmentService {
 			dto.setImage(a.getPatient().getImage());
 			dto.setPrice(a.getDoctor().getPrice());
 			dto.setAppointmentId(a.getAppointmentId());
+			dto.setReason(a.getReason());
+			dto.setState(a.getState());
 			appointmentDTOs.add(dto);
 		}
 
@@ -225,6 +227,8 @@ public class AppointmentServiceImpl implements AppointmentService {
 			dto.setLastName(a.getDoctor().getLastName());
 			dto.setPrice(a.getDoctor().getPrice());
 			dto.setAppointmentId(a.getAppointmentId());
+			dto.setReason(a.getReason());
+			dto.setState(a.getState());
 			appointmentDTOs.add(dto);
 		}
 		return appointmentDTOs;
@@ -266,6 +270,16 @@ public class AppointmentServiceImpl implements AppointmentService {
 	@Transactional(readOnly = true)
 	public List<CantidadCitasAnoDTO> findCitasDoctorAnuales(Integer doctorId) {
 		return appointmentRepository.findCitasDoctorAnuales(doctorId);
+	}
+
+	@Override
+	public List<Patient> buscarPacientesPorDoctor(Integer doctorId) {
+		Optional<Doctor> optional = doctorService.findById(doctorId);
+		if (optional.isPresent() == false) {
+			throw new ZMessManager("Doctor no existe");
+
+		}
+		return appointmentRepository.findPatientsByDoctor(optional.get());
 	}
 
 }

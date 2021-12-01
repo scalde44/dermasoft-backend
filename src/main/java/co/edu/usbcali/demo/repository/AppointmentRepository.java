@@ -21,6 +21,10 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
 	// Buscar citas por doctor
 	public List<Appointment> findByDoctor(Doctor doctor);
 
+	// Buscar pacientes por doctor
+	@Query("select distinct (a.patient) from Appointment a where a.doctor=:doctor")
+	public List<Patient> findPatientsByDoctor(Doctor doctor);
+
 	// Buscar citas por paciente
 	public List<Appointment> findByPatient(Patient patient);
 

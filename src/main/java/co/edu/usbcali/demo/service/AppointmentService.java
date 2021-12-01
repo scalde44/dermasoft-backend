@@ -3,6 +3,8 @@ package co.edu.usbcali.demo.service;
 import java.util.List;
 
 import co.edu.usbcali.demo.domain.Appointment;
+import co.edu.usbcali.demo.domain.Doctor;
+import co.edu.usbcali.demo.domain.Patient;
 import co.edu.usbcali.demo.dto.CantidadCitasAnoDTO;
 import co.edu.usbcali.demo.dto.FinalizarCitaDTO;
 import co.edu.usbcali.demo.dto.PatientAppointmentDTO;
@@ -13,8 +15,8 @@ import co.edu.usbcali.demo.dto.PatientAppointmentDTO;
  *
  */
 public interface AppointmentService extends GenericService<Appointment, Integer> {
-	// Buscar pacientes por doctores
-	public List<PatientAppointmentDTO> buscarPacientesPorDoctor(Integer doctorId);
+	// Buscar citas por doctores
+	public List<PatientAppointmentDTO> buscarCitasPorDoctor(Integer doctorId);
 
 	// Buscar citas por pacientes
 	public List<PatientAppointmentDTO> buscarCitasPorPaciente(Integer patientId);
@@ -27,4 +29,7 @@ public interface AppointmentService extends GenericService<Appointment, Integer>
 
 	// Reporte citas por doctor
 	public List<CantidadCitasAnoDTO> findCitasDoctorAnuales(Integer doctorId);
+
+	// Buscar pacientes por doctor
+	public List<Patient> buscarPacientesPorDoctor(Integer doctorId);
 }
