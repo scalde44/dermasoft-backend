@@ -25,7 +25,7 @@ import co.edu.usbcali.demo.service.ProductService;
  *
  */
 @RestController
-@RequestMapping("/api/v1/product")
+@RequestMapping("/product")
 @CrossOrigin(origins = "*")
 public class ProductRestController {
 	@Autowired

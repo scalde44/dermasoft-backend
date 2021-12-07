@@ -26,7 +26,7 @@ import co.edu.usbcali.demo.service.AppointmentService;
  *
  */
 @RestController
-@RequestMapping("/api/v1/appointment")
+@RequestMapping("/appointment")
 @CrossOrigin(origins = "*")
 public class AppointmentRestController {
 	@Autowired
@@ -84,14 +84,14 @@ public class AppointmentRestController {
 	}
 
 	// Buscar citas por doctor
-	@GetMapping("/findByDoctor/{doctorId}")
+	@GetMapping("/doctor/{doctorId}")
 	public ResponseEntity<?> findByDoctor(@PathVariable("doctorId") Integer doctorId) throws Exception {
 
 		return ResponseEntity.ok().body(appointmentService.buscarCitasPorDoctor(doctorId));
 	}
 
 	// Buscar pacientes por doctor
-	@GetMapping("/findPatientsByDoctor/{doctorId}")
+	@GetMapping("/patient/doctor/{doctorId}")
 	public ResponseEntity<?> findPatientsByDoctor(@PathVariable("doctorId") Integer doctorId) throws Exception {
 
 		return ResponseEntity.ok()
@@ -99,21 +99,21 @@ public class AppointmentRestController {
 	}
 
 	// Buscar citas por paciente
-	@GetMapping("/findByPatient/{patientId}")
+	@GetMapping("/patient/{patientId}")
 	public ResponseEntity<?> findByPatient(@PathVariable("patientId") Integer patientId) throws Exception {
 
 		return ResponseEntity.ok().body(appointmentService.buscarCitasPorPaciente(patientId));
 	}
 
 	// Crear FinalizarCitaDTO por id appointment
-	@GetMapping("/finalizarCita/{appointmentId}")
+	@GetMapping("/finish/{appointmentId}")
 	public ResponseEntity<?> finalizarCita(@PathVariable("appointmentId") Integer appointmentId) throws Exception {
 
 		return ResponseEntity.ok().body(appointmentService.crearFinalizarCitaDTOById(appointmentId));
 	}
 
 	// Cerrar cita
-	@GetMapping("/cerrarCita/{appointmentId}")
+	@GetMapping("/close/{appointmentId}")
 	public ResponseEntity<?> cerrarCita(@PathVariable("appointmentId") Integer appointmentId) throws Exception {
 
 		return ResponseEntity.ok()
@@ -121,7 +121,7 @@ public class AppointmentRestController {
 	}
 
 	// Reporte citas por doctor
-	@GetMapping("/reporteDoctor/{doctorId}")
+	@GetMapping("/report/doctor/{doctorId}")
 	public ResponseEntity<?> reporteDoctor(@PathVariable("doctorId") Integer doctorId) throws Exception {
 		return ResponseEntity.ok().body(appointmentService.findCitasDoctorAnuales(doctorId));
 	}

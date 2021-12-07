@@ -25,7 +25,7 @@ import co.edu.usbcali.demo.service.TreatmentService;
  *
  */
 @RestController
-@RequestMapping("/api/v1/treatment")
+@RequestMapping("/treatment")
 @CrossOrigin(origins = "*")
 public class TreatmentRestController {
 	@Autowired

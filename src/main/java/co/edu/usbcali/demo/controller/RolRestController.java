@@ -27,7 +27,7 @@ import co.edu.usbcali.demo.service.RolService;
  *
  */
 @RestController
-@RequestMapping("/api/v1/rol")
+@RequestMapping("/rol")
 @CrossOrigin(origins = "*")
 public class RolRestController {
 	@Autowired
@@ -83,7 +83,7 @@ public class RolRestController {
 	}
 
 	// Método registrar admins
-	@PostMapping("/registerAdmin")
+	@PostMapping("/admin")
 	public ResponseEntity<?> registerAdmin(@Valid @RequestBody RolDTO rolDTO) throws Exception {
 
 		Rol rol = rolMapper.rolDTOToRol(rolDTO);
@@ -93,7 +93,7 @@ public class RolRestController {
 	}
 
 	// Método registrar doctores
-	@PostMapping("/registerDoctor")
+	@PostMapping("/doctor")
 	public ResponseEntity<?> registerDoctor(@Valid @RequestBody RegistroDoctorDTO registroDoctorDTO) throws Exception {
 
 		Rol rol = rolService.registerDoctor(registroDoctorDTO);
@@ -102,7 +102,7 @@ public class RolRestController {
 	}
 
 	// Método registrar pacientes
-	@PostMapping("/registerPatient")
+	@PostMapping("/patient")
 	public ResponseEntity<?> registerPatient(@Valid @RequestBody RegistroPacienteDTO registroPacienteDTO)
 			throws Exception {
 
@@ -112,7 +112,7 @@ public class RolRestController {
 	}
 
 	// Login
-	@GetMapping("findByEmail/{email}")
+	@GetMapping("/email/{email}")
 	public ResponseEntity<?> findByEmail(@PathVariable("email") String email) throws Exception {
 
 		Rol rol = (rolService.findByEmail(email).isPresent() == true) ? rolService.findByEmail(email).get() : null;

@@ -25,7 +25,7 @@ import co.edu.usbcali.demo.service.EpsService;
  *
  */
 @RestController
-@RequestMapping("/api/v1/eps")
+@RequestMapping("/eps")
 @CrossOrigin(origins = "*")
 public class EpsRestController {
 	@Autowired

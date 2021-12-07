@@ -27,7 +27,7 @@ import co.edu.usbcali.demo.service.AdminService;
  *
  */
 @RestController
-@RequestMapping("/api/v1/admin")
+@RequestMapping("/admin")
 @CrossOrigin(origins = "*")
 public class AdminRestController {
 	@Autowired
@@ -82,7 +82,8 @@ public class AdminRestController {
 	public ResponseEntity<?> count() {
 		return ResponseEntity.ok().body(adminService.count());
 	}
-	@GetMapping(value = "/findByEmail/{email}")
+
+	@GetMapping(value = "/email/{email}")
 	public ResponseEntity<?> findByEmail(@PathVariable("email") String email) throws Exception {
 
 		Rol rol = (adminService.buscarAdminPorEmail(email).isPresent() == true)

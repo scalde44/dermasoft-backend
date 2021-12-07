@@ -55,7 +55,7 @@ public class PatientServiceImpl implements PatientService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Patient> findAll() {
-		return patientRepository.findAll();
+		return patientRepository.findAllByOrderByPatientId();
 	}
 
 	@Override

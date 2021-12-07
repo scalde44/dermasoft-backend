@@ -190,7 +190,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 			throw new ZMessManager("Doctor no existe");
 
 		}
-		List<Appointment> appointments = appointmentRepository.findByDoctor(optional.get());
+		List<Appointment> appointments = appointmentRepository.findByDoctorOrderByAppointmentId(optional.get());
 		List<PatientAppointmentDTO> appointmentDTOs = new ArrayList<>();
 		for (Appointment a : appointments) {
 			PatientAppointmentDTO dto = new PatientAppointmentDTO();

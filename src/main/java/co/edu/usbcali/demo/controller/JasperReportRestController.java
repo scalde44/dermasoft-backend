@@ -25,7 +25,7 @@ import co.edu.usbcali.demo.service.JasperReportService;
  * @version 1.0
  */
 @RestController
-@RequestMapping("/api/v1/reportes")
+@RequestMapping("/report")
 @CrossOrigin(origins = "*")
 public class JasperReportRestController {
 
@@ -33,7 +33,7 @@ public class JasperReportRestController {
 	@Autowired
 	private JasperReportService jasperReportService;
 
-	@GetMapping("/generarReporteCita/{appointmentId}")
+	@GetMapping("/appointment/{appointmentId}")
 	public ResponseEntity<InputStreamResource> generarReporteCita(@PathVariable("appointmentId") Long appointmentId)
 			throws Exception {
 		ByteArrayInputStream bais = jasperReportService.generarReporteCita(appointmentId);

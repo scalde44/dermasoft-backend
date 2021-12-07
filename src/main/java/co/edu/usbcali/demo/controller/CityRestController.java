@@ -25,7 +25,7 @@ import co.edu.usbcali.demo.service.CityService;
  *
  */
 @RestController
-@RequestMapping("/api/v1/city")
+@RequestMapping("/city")
 @CrossOrigin(origins = "*")
 public class CityRestController {
 	@Autowired

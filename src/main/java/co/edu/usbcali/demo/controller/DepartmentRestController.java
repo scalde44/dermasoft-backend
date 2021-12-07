@@ -25,7 +25,7 @@ import co.edu.usbcali.demo.service.DepartmentService;
  *
  */
 @RestController
-@RequestMapping("/api/v1/department")
+@RequestMapping("/department")
 @CrossOrigin(origins = "*")
 public class DepartmentRestController {
 	@Autowired

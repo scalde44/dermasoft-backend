@@ -25,7 +25,7 @@ import co.edu.usbcali.demo.service.PatientService;
  *
  */
 @RestController
-@RequestMapping("/api/v1/patient")
+@RequestMapping("/patient")
 @CrossOrigin(origins = "*")
 public class PatientRestController {
 	@Autowired
@@ -79,8 +79,8 @@ public class PatientRestController {
 	public ResponseEntity<?> count() {
 		return ResponseEntity.ok().body(patientService.count());
 	}
-	
-	@GetMapping(value = "/buscarPorEmail/{email}")
+
+	@GetMapping(value = "/email/{email}")
 	public ResponseEntity<?> findByEmail(@PathVariable("email") String email) throws Exception {
 
 		Patient patient = (patientService.buscarPacientePorEmail(email).isPresent() == true)

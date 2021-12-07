@@ -1,5 +1,6 @@
 package co.edu.usbcali.demo.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,4 +17,6 @@ public interface DoctorRepository extends JpaRepository<Doctor, Integer> {
 	// Buscar doctor por email
 	@Query("SELECT d FROM Doctor d WHERE d.rol.email=:email")
 	public Optional<Doctor> buscarDoctorPorEmail(String email);
+
+	List<Doctor> findAllByOrderByDoctorId();
 }
