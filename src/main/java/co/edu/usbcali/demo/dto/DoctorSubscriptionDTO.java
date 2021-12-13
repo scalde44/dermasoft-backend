@@ -3,8 +3,6 @@ package co.edu.usbcali.demo.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.validation.constraints.NotNull;
-
 /**
  * @author Zathura Code Generator Version 9.0 http://zathuracode.org
  *         www.zathuracode.org
@@ -13,7 +11,6 @@ import javax.validation.constraints.NotNull;
 public class DoctorSubscriptionDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer doctorSubscriptionId;
-	@NotNull
 	private Date membershipDate;
 	private String state;
 	private Integer doctorId;
@@ -22,8 +19,8 @@ public class DoctorSubscriptionDTO implements Serializable {
 	public DoctorSubscriptionDTO() {
 	}
 
-	public DoctorSubscriptionDTO(Integer doctorSubscriptionId, @NotNull Date membershipDate, String state,
-			Integer doctorId, Integer subscriptionId) {
+	public DoctorSubscriptionDTO(Integer doctorSubscriptionId, Date membershipDate, String state, Integer doctorId,
+			Integer subscriptionId) {
 		this.doctorSubscriptionId = doctorSubscriptionId;
 		this.membershipDate = membershipDate;
 		this.state = state;

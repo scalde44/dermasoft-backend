@@ -1,5 +1,6 @@
 package co.edu.usbcali.demo.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -58,7 +59,8 @@ public class DoctorSubscriptionServiceImpl implements DoctorSubscriptionService 
 		if (entity == null) {
 			throw new ZMessManager().new NullEntityExcepcion("DoctorSubscription");
 		}
-
+		entity.setMembershipDate(LocalDate.now());
+		entity.setState("A");
 		validate(entity);
 
 		return doctorSubscriptionRepository.save(entity);
@@ -114,5 +116,10 @@ public class DoctorSubscriptionServiceImpl implements DoctorSubscriptionService 
 	@Transactional(readOnly = true)
 	public Optional<DoctorSubscription> findById(Integer doctorSubscriptionId) {
 		return doctorSubscriptionRepository.findById(doctorSubscriptionId);
+	}
+
+	@Override
+	public List<DoctorSubscription> findByDoctorId(Integer doctorId) {
+		return doctorSubscriptionRepository.findByDoctorId(doctorId);
 	}
 }

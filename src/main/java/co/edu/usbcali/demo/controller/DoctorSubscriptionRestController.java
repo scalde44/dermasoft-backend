@@ -43,6 +43,12 @@ public class DoctorSubscriptionRestController {
 				.body(doctorSubscriptionMapper.doctorSubscriptionToDoctorSubscriptionDTO(doctorSubscription));
 	}
 
+	@GetMapping(value = "/doctor/{doctorId}")
+	public ResponseEntity<?> findByDoctorId(@PathVariable("doctorId") Integer doctorId) throws Exception {
+		return ResponseEntity.ok().body(doctorSubscriptionMapper
+				.listDoctorSubscriptionToListDoctorSubscriptionDTO(doctorSubscriptionService.findByDoctorId(doctorId)));
+	}
+
 	@GetMapping()
 	public ResponseEntity<?> findAll() throws Exception {
 		return ResponseEntity.ok().body(doctorSubscriptionMapper

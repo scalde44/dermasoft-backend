@@ -1,5 +1,7 @@
 package co.edu.usbcali.demo.service;
 
+import java.util.List;
+
 import co.edu.usbcali.demo.domain.DoctorSubscription;
 
 /**
@@ -8,4 +10,5 @@ import co.edu.usbcali.demo.domain.DoctorSubscription;
  *
  */
 public interface DoctorSubscriptionService extends GenericService<DoctorSubscription, Integer> {
+	List<DoctorSubscription> findByDoctorId(Integer doctorId);
 }
