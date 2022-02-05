@@ -1,9 +1,11 @@
 package co.edu.usbcali.demo.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -120,6 +122,27 @@ public class DoctorSubscriptionServiceImpl implements DoctorSubscriptionService 
 
 	@Override
 	public List<DoctorSubscription> findByDoctorId(Integer doctorId) {
-		return doctorSubscriptionRepository.findByDoctorId(doctorId);
+		List<DoctorSubscription> listaSubs = doctorSubscriptionRepository.findByDoctorId(doctorId);
+		return listaSubs;
+	}
+
+	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void validateSubscriptionsService() throws Exception {
+		List<DoctorSubscription> listaUpdate = new ArrayList<>();
+		List<DoctorSubscription> listaSubs = doctorSubscriptionRepository.findAll();
+		List<DoctorSubscription> listaActs = listaSubs.stream().filter(sub -> sub.getState().equalsIgnoreCase("A"))
+				.collect(Collectors.toList());
+		listaActs.forEach(sub -> {
+			LocalDate fechaM = sub.getMembershipDate();
+			Integer meses = sub.getSubscription().getDuration();
+			if (fechaM.plusMonths(meses).compareTo(LocalDate.now()) <= 0) {
+				sub.setState("I");
+				listaUpdate.add(sub);
+			}
+		});
+		if (!listaUpdate.isEmpty()) {
+			this.doctorSubscriptionRepository.saveAll(listaUpdate);
+		}
 	}
 }

@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -89,5 +90,10 @@ public class DoctorSubscriptionRestController {
 	@GetMapping(value = "/count")
 	public ResponseEntity<?> count() {
 		return ResponseEntity.ok().body(doctorSubscriptionService.count());
+	}
+
+	@Scheduled(cron = "0 0 7 * * *")
+	public void validateSubscriptionDaily() throws Exception {
+		this.doctorSubscriptionService.validateSubscriptionsService();
 	}
 }

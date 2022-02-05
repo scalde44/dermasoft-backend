@@ -11,4 +11,6 @@ import co.edu.usbcali.demo.domain.DoctorSubscription;
  */
 public interface DoctorSubscriptionService extends GenericService<DoctorSubscription, Integer> {
 	List<DoctorSubscription> findByDoctorId(Integer doctorId);
+
+	void validateSubscriptionsService() throws Exception;
 }
