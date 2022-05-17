@@ -282,4 +282,9 @@ public class AppointmentServiceImpl implements AppointmentService {
 		return appointmentRepository.findPatientsByDoctor(optional.get());
 	}
 
+	@Override
+	public List<Doctor> buscarDoctoresPorPaciente(Integer patientId) {
+		return appointmentRepository.findDoctorsByPatient(patientId);
+	}
+
 }

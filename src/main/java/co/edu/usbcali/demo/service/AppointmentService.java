@@ -32,4 +32,7 @@ public interface AppointmentService extends GenericService<Appointment, Integer>
 
 	// Buscar pacientes por doctor
 	public List<Patient> buscarPacientesPorDoctor(Integer doctorId);
+
+	// Buscar pacientes por doctor
+	public List<Doctor> buscarDoctoresPorPaciente(Integer patientId);
 }
