@@ -31,6 +31,7 @@ import co.edu.usbcali.demo.repository.AdminRepository;
 import co.edu.usbcali.demo.repository.DoctorRepository;
 import co.edu.usbcali.demo.repository.PatientRepository;
 import co.edu.usbcali.demo.repository.RolRepository;
+import co.edu.usbcali.demo.utility.ConstantesDermasoft;
 import co.edu.usbcali.demo.utility.Utilities;
 
 /**
@@ -225,6 +226,7 @@ public class RolServiceImpl implements RolService {
 		DoctorDTO doctorDTO = new DoctorDTO();
 		doctorDTO.setUserId(entity.getUserIdentification());
 		doctorDTO.setCityI(entity.getCityI());
+		doctorDTO.setVerified(ConstantesDermasoft.NO_REGISTRADO);
 		Doctor doctor = doctorMapper.toDoctor(doctorDTO);
 		doctorRepository.save(doctor);
 		return rol;
@@ -257,6 +259,7 @@ public class RolServiceImpl implements RolService {
 		patientDTO.setUserId(entity.getUserIdentification());
 		patientDTO.setCityI(entity.getCityI());
 		patientDTO.setEpsI(entity.getEpsI());
+		patientDTO.setVerified(ConstantesDermasoft.NO_REGISTRADO);
 		Patient patient = patientMapper.toPatient(patientDTO);
 		patientRepository.save(patient);
 		return rol;

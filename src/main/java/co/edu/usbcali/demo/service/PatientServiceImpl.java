@@ -1,5 +1,7 @@
 package co.edu.usbcali.demo.service;
 
+import static co.edu.usbcali.demo.utility.ConstantesDermasoft.REGISTRADO;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -122,7 +124,12 @@ public class PatientServiceImpl implements PatientService {
 		if (patientRepository.existsById(entity.getPatientId()) == false) {
 			throw new ZMessManager(ZMessManager.ENTITY_WITHSAMEKEY);
 		}
-
+		if (entity.getVerified() == null || entity.getVerified().isBlank()) {
+			entity.setVerified(REGISTRADO);
+		}
+		if (!entity.getVerified().equalsIgnoreCase(REGISTRADO)) {
+			entity.setVerified(REGISTRADO);
+		}
 		return patientRepository.save(entity);
 
 	}

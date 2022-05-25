@@ -1,5 +1,7 @@
 package co.edu.usbcali.demo.service;
 
+import static co.edu.usbcali.demo.utility.ConstantesDermasoft.REGISTRADO;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -29,7 +31,7 @@ import co.edu.usbcali.demo.utility.Utilities;
 @Scope("singleton")
 @Service
 public class DoctorServiceImpl implements DoctorService {
-
+	
 	@Autowired
 	private DoctorRepository doctorRepository;
 
@@ -122,7 +124,12 @@ public class DoctorServiceImpl implements DoctorService {
 		if (doctorRepository.existsById(entity.getDoctorId()) == false) {
 			throw new ZMessManager(ZMessManager.ENTITY_WITHSAMEKEY);
 		}
-
+		if(entity.getVerified()==null||entity.getVerified().isBlank()) {
+			entity.setVerified(REGISTRADO);
+		}
+		if(!entity.getVerified().equalsIgnoreCase(REGISTRADO)) {
+			entity.setVerified(REGISTRADO);
+		}
 		return doctorRepository.save(entity);
 
 	}
