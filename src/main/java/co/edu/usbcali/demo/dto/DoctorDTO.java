@@ -25,6 +25,9 @@ public class DoctorDTO implements Serializable {
 	private Integer cityI;
 	private String userId;
 	private String state;
+	private String facebookUrl;
+	private String instagramUrl;
+	private String twitterUrl;
 
 	public DoctorDTO() {
 		super();
@@ -32,7 +35,7 @@ public class DoctorDTO implements Serializable {
 
 	public DoctorDTO(Date birthday, String description, Integer doctorId, String firstName, String gender, String image,
 			String lastName, String lastName2, String phone, Integer price, Integer reputation, String verified,
-			Integer cityI, String userId, String state) {
+			Integer cityI, String userId, String state, String facebookUrl, String instagramUrl, String twitterUrl) {
 		super();
 		this.birthday = birthday;
 		this.description = description;
@@ -49,6 +52,9 @@ public class DoctorDTO implements Serializable {
 		this.cityI = cityI;
 		this.userId = userId;
 		this.state = state;
+		this.facebookUrl = facebookUrl;
+		this.instagramUrl = instagramUrl;
+		this.twitterUrl = twitterUrl;
 	}
 
 	public Date getBirthday() {
@@ -169,6 +175,30 @@ public class DoctorDTO implements Serializable {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public String getFacebookUrl() {
+		return facebookUrl;
+	}
+
+	public void setFacebookUrl(String facebookUrl) {
+		this.facebookUrl = facebookUrl;
+	}
+
+	public String getInstagramUrl() {
+		return instagramUrl;
+	}
+
+	public void setInstagramUrl(String instagramUrl) {
+		this.instagramUrl = instagramUrl;
+	}
+
+	public String getTwitterUrl() {
+		return twitterUrl;
+	}
+
+	public void setTwitterUrl(String twitterUrl) {
+		this.twitterUrl = twitterUrl;
 	}
 
 }

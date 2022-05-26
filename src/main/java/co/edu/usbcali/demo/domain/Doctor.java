@@ -63,7 +63,12 @@ public class Doctor implements java.io.Serializable {
 	private Integer reputation;
 	@Column(name = "verified")
 	private String verified;
-
+	@Column(name = "facebook_url")
+	private String facebookUrl;
+	@Column(name = "instagram_url")
+	private String instagramUrl;
+	@Column(name = "twitter_url")
+	private String twitterUrl;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "doctor")
 	private List<Appointment> appointments = new ArrayList<>();
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "doctor")
@@ -74,7 +79,8 @@ public class Doctor implements java.io.Serializable {
 
 	public Doctor(Integer doctorId, @NotNull City city, @NotNull Rol rol, Date birthday, String description,
 			String firstName, String gender, String image, String lastName, String lastName2, String phone,
-			Integer price, Integer reputation, String verified, List<Appointment> appointments) {
+			Integer price, Integer reputation, String verified, String facebookUrl, String instagramUrl,
+			String twitterUrl) {
 		super();
 		this.doctorId = doctorId;
 		this.city = city;
@@ -90,7 +96,9 @@ public class Doctor implements java.io.Serializable {
 		this.price = price;
 		this.reputation = reputation;
 		this.verified = verified;
-		this.appointments = appointments;
+		this.facebookUrl = facebookUrl;
+		this.instagramUrl = instagramUrl;
+		this.twitterUrl = twitterUrl;
 	}
 
 	public Integer getDoctorId() {
@@ -203,6 +211,30 @@ public class Doctor implements java.io.Serializable {
 
 	public void setVerified(String verified) {
 		this.verified = verified;
+	}
+
+	public String getFacebookUrl() {
+		return facebookUrl;
+	}
+
+	public void setFacebookUrl(String facebookUrl) {
+		this.facebookUrl = facebookUrl;
+	}
+
+	public String getInstagramUrl() {
+		return instagramUrl;
+	}
+
+	public void setInstagramUrl(String instagramUrl) {
+		this.instagramUrl = instagramUrl;
+	}
+
+	public String getTwitterUrl() {
+		return twitterUrl;
+	}
+
+	public void setTwitterUrl(String twitterUrl) {
+		this.twitterUrl = twitterUrl;
 	}
 
 	public List<Appointment> getAppointments() {
