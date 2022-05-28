@@ -74,6 +74,9 @@ public class Appointment implements java.io.Serializable {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "appointment")
 	private List<Treatment> treatments = new ArrayList<>();
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "appointment")
+	private List<Rating> ratings = new ArrayList<>();
+
 	public Appointment() {
 	}
 
@@ -172,6 +175,14 @@ public class Appointment implements java.io.Serializable {
 
 	public void setTreatments(List<Treatment> treatments) {
 		this.treatments = treatments;
+	}
+
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
 	}
 
 }

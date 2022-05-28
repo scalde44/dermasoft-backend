@@ -37,7 +37,8 @@ import co.edu.usbcali.demo.utility.Utilities;
 @Scope("singleton")
 @Service
 public class AppointmentServiceImpl implements AppointmentService {
-
+	private static final String ESTADO_NO_CALIFICADO = "N";
+	private static final String ESTADO_CALIFICADO = "Y";
 	@Autowired
 	private AppointmentRepository appointmentRepository;
 
@@ -219,6 +220,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 		}
 		List<Appointment> appointments = appointmentRepository.findByPatient(optional.get());
 		List<PatientAppointmentDTO> appointmentDTOs = new ArrayList<>();
+		String rating;
 		for (Appointment a : appointments) {
 			PatientAppointmentDTO dto = new PatientAppointmentDTO();
 			dto.setDate(a.getDate());
@@ -229,6 +231,9 @@ public class AppointmentServiceImpl implements AppointmentService {
 			dto.setAppointmentId(a.getAppointmentId());
 			dto.setReason(a.getReason());
 			dto.setState(a.getState());
+			dto.setImage(a.getDoctor().getImage());
+			rating = (!a.getRatings().isEmpty()) ? ESTADO_CALIFICADO : ESTADO_NO_CALIFICADO;
+			dto.setRating(rating);
 			appointmentDTOs.add(dto);
 		}
 		return appointmentDTOs;
